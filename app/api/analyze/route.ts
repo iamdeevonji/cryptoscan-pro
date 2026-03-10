@@ -1,23 +1,23 @@
 export const runtime = "nodejs";
 
-import Anthropic from "@anthropic-ai/sdk";
-
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    const message = await client.messages.create({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
-      messages: [{ role: "user", content: prompt }],
-    });
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 1000, temperature: 0.7 },
+        }),
+      }
+    );
 
-    const text = message.content
-      .filter((block: any) => block.type === "text")
-      .map((block: any) => block.text)
-      .join("");
+    const data = await response.json();
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No analysis returned.";
 
     return new Response(JSON.stringify({ text }), {
       headers: { "Content-Type": "application/json" },
