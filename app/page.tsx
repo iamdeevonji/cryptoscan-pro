@@ -70,7 +70,7 @@ const STYLE = `
   .filter-chevron { font-size:12px; color:var(--text-muted); transition:transform .2s; }
   .filter-chevron.open { transform:rotate(180deg); }
   .filter-divider { height:1px; background:var(--border); }
-  .filter-body { padding:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .filter-body { padding:20px; display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
   @media(max-width:700px){ .filter-body { grid-template-columns:1fr; } }
   .filter-section-title { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
   .filter-group { display:flex; flex-direction:column; gap:12px; }
@@ -117,14 +117,12 @@ const STYLE = `
   @keyframes spin { to{transform:rotate(360deg)} }
   .dyk-status { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--text); margin-bottom:6px; }
   .dyk-substatus { font-size:13px; color:var(--text-muted); margin-bottom:28px; min-height:20px; }
-
   .dyk-exchange-row { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
   .dyk-exchange-pill { display:flex; align-items:center; gap:6px; background:var(--surface2); border:1px solid var(--border2); border-radius:20px; padding:5px 14px; font-size:12px; font-weight:600; color:var(--text-muted); transition:all .4s; }
   .dyk-exchange-pill.active { border-color:rgba(108,99,255,0.5); color:var(--accent); background:var(--accent-glow); }
   .dyk-exchange-pill.done  { border-color:rgba(34,197,94,0.4); color:var(--green); background:var(--green-glow); }
   .dyk-ex-dot { width:7px; height:7px; border-radius:50%; background:currentColor; flex-shrink:0; }
   .dyk-ex-dot.spinning { background:transparent; border:2px solid currentColor; border-top-color:transparent; border-radius:50%; animation:spin .6s linear infinite; width:9px; height:9px; }
-
   .dyk-card { max-width:580px; margin:0 auto; background:var(--surface2); border:1px solid var(--border2); border-radius:var(--radius); padding:24px 28px; transition:opacity .4s ease; }
   .dyk-label { display:inline-flex; align-items:center; gap:6px; background:var(--accent-glow); border:1px solid rgba(108,99,255,0.3); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; margin-bottom:14px; }
   .dyk-fact { font-size:15px; line-height:1.8; color:var(--text-dim); }
@@ -145,12 +143,13 @@ const STYLE = `
   .tab.active { background:var(--accent); color:white; box-shadow:0 2px 10px var(--accent-glow); }
   .tab:not(.active):hover { color:var(--text); background:var(--surface2); }
 
+  /* table — removed ATR + Vol columns, now 8 cols */
   .table-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .t-head { display:grid; grid-template-columns:1fr 80px 100px 90px 80px 100px 100px 110px 44px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
+  .t-head { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
   .t-th { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; }
   .row-wrap { border-bottom:1px solid var(--border); }
   .row-wrap:last-child { border-bottom:none; }
-  .t-row { display:grid; grid-template-columns:1fr 80px 100px 90px 80px 100px 100px 110px 44px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
+  .t-row { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
   .t-row:hover { background:var(--surface2); }
   @keyframes rowIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
   .pair-name { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--text); }
@@ -167,12 +166,10 @@ const STYLE = `
   .badge-up      { background:var(--green-glow);    color:var(--green); }
   .badge-down    { background:var(--red-glow);      color:var(--down); }
   .badge-neutral { background:var(--surface2);      color:var(--text-muted); }
-  .badge-orange  { background:rgba(249,115,22,.1);  color:var(--orange); }
 
   .signal { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; padding:4px 9px; border-radius:6px; white-space:nowrap; }
   .signal-ss { background:var(--green-glow); color:var(--green); }
   .signal-ls { background:var(--red-glow);   color:var(--down); }
-  .signal-bo { background:rgba(249,115,22,.1); color:var(--orange); }
   .signal-none { background:var(--surface2); color:var(--text-muted); font-size:10px; }
 
   .trend-wrap { display:flex; align-items:center; gap:6px; }
@@ -202,6 +199,7 @@ const STYLE = `
   .ai-spinner { width:18px; height:18px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; }
   .ai-footer { margin-top:14px; padding-top:12px; border-top:1px solid var(--border); font-size:11px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
 
+  /* mobile */
   .cards-list { display:none; flex-direction:column; gap:12px; }
   .m-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; animation:rowIn .3s ease both; }
   .m-card-link { display:block; padding:16px; text-decoration:none; color:inherit; transition:background .15s; }
@@ -234,9 +232,9 @@ const STYLE = `
   .empty-icon  { font-size:40px; margin-bottom:14px; opacity:.4; }
   .empty-title { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--text); margin-bottom:6px; }
   .empty-sub   { font-size:13px; color:var(--text-muted); }
-  .footer { text-align:center; padding:24px 16px; font-size:12px; color:var(--text-muted); }
-
   .error-banner { background:var(--red-glow); border:1px solid rgba(239,68,68,0.3); border-radius:var(--radius-sm); padding:12px 16px; margin-bottom:16px; font-size:13px; color:var(--down); }
+  .live-badge { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; background:var(--green-glow); color:var(--green); border:1px solid rgba(34,197,94,0.3); margin-left:6px; vertical-align:middle; }
+  .footer { text-align:center; padding:24px 16px; font-size:12px; color:var(--text-muted); }
 `;
 
 // ── DYK Facts ─────────────────────────────────────────────────────────────────
@@ -245,9 +243,8 @@ const DYK_FACTS = [
   "<strong>Funding rates are a sentiment gauge.</strong> Extremely positive funding means the crowd is very long — which often precedes a flush down.",
   "<strong>Whales prefer illiquid hours.</strong> Large players often move markets during low-liquidity windows like late Sunday UTC.",
   "<strong>Most retail traders lose money.</strong> Studies show 70–80% of retail crypto traders are net negative — edge comes from discipline, not luck.",
-  "<strong>ATR tells you how much, not which direction.</strong> The Average True Range measures volatility — pair it with trend direction for a real edge.",
   "<strong>Short squeezes can be violent.</strong> When too many traders are short and price rises, forced liquidations amplify the move exponentially.",
-  "<strong>The best setups have confluence.</strong> A single signal is noise. Volume expansion + trend + funding alignment = a real edge.",
+  "<strong>The best setups have confluence.</strong> A single signal is noise. Volume + trend + funding alignment = a real edge.",
   "<strong>The daily close is the most important candle.</strong> Institutions and algos reference daily closes more than any intraday level.",
   "<strong>Risk management beats entry timing.</strong> A mediocre entry with a tight stop loss will outperform a perfect entry with no plan.",
   "<strong>Open Interest tells you who's in the trade.</strong> Rising OI + rising price = new longs entering. Falling OI + rising price = shorts covering.",
@@ -259,99 +256,90 @@ const DYK_FACTS = [
 ];
 
 // ── Types ─────────────────────────────────────────────────────────────────────
-interface RawPair { symbol: string; type: string; exchange: string; }
-interface Pair extends RawPair {
-  vol24h: number; avgVol7d: number; volRatio: number;
-  priceChange: number; trend: string; atr: number;
-  atrExpansion: boolean; oiChangePct: number; fundingRate: number | null;
+interface LivePair {
+  symbol: string;
+  type: string;
+  exchange: string;
+  priceChangePct: number;
+  vol24h: number;
+  fundingRate: number | null;
+  openInterest: number | null;
+  oiChangePct: number | null;
 }
-interface Cfg {
-  marketType: string; spotVolMin: number; futVolMin: number;
-  changeMin: number; changeMax: number; atrMin: number; oiMin: number;
-  allowSideways: boolean; fundingFilter: boolean;
-  volExpFilter: boolean; volExpMultiplier: number; atrExpFilter: boolean;
-}
-type ExState = "pending" | "active" | "done" | "error";
 
+interface Cfg {
+  marketType: string;
+  spotVolMin: number;
+  futVolMin: number;
+  changeMin: number;
+  changeMax: number;
+  oiMin: number;
+  allowSideways: boolean;
+  fundingFilter: boolean;
+}
+
+type ExState = "pending" | "active" | "done" | "error";
 const EXCHANGES = ["Binance Spot", "Binance Futures", "Bybit Spot", "Bybit Futures"] as const;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-const rnd  = (lo: number, hi: number) => Math.random() * (hi - lo) + lo;
-const rndN = (lo: number, hi: number) => Math.round(rnd(lo, hi) * 1000) / 1000;
 const fmtVol  = (m: number) => m >= 1000 ? `$${(m/1000).toFixed(2)}B` : `$${m.toFixed(0)}M`;
 const fmtChg  = (v: number) => `${v > 0 ? "+" : ""}${v.toFixed(2)}%`;
 const fmtFund = (v: number | null) => v == null ? "—" : `${v > 0 ? "+" : ""}${v.toFixed(3)}%`;
+const fmtOI   = (v: number | null) => v == null ? "—" : v >= 1000 ? `$${(v/1000).toFixed(2)}B` : `$${v.toFixed(0)}M`;
 
-function simulatePair(raw: RawPair): Pair {
-  const vol24h   = raw.type === "SPOT" ? rnd(0.5, 900) : rnd(1, 2200);
-  const avgVol7d = vol24h * rnd(0.4, 0.9);
-  const volRatio = vol24h / avgVol7d;
-  const priceChange = rnd(-18, 35);
-  const trend = priceChange > 5 ? "UPTREND" : priceChange < -3 ? "DOWNTREND" : "SIDEWAYS";
-  const baseAtr = rnd(0.2, 8);
-  const expanding = Math.random() > 0.45;
-  const atrSeries = Array.from({ length: 5 }, (_, i) =>
-    expanding ? baseAtr + i * rnd(0.1, 0.4) + rnd(-0.1, 0.1) : baseAtr + rnd(-0.3, 0.3)
-  );
-  const atr = atrSeries[4];
-  const prevAtrAvg = atrSeries.slice(0, 4).reduce((a, b) => a + b, 0) / 4;
-  const atrExpansion = atr > prevAtrAvg && expanding;
-  const oiChangePct = rnd(-10, 25);
-  const fundingRate = raw.type === "FUTURES" ? rndN(-0.08, 0.08) : null;
-  return { ...raw, vol24h, avgVol7d, volRatio, priceChange, trend, atr, atrExpansion, oiChangePct, fundingRate };
+function getTrend(priceChangePct: number): string {
+  if (priceChangePct > 3)  return "UPTREND";
+  if (priceChangePct < -3) return "DOWNTREND";
+  return "SIDEWAYS";
 }
 
-function applyFilters(pairs: Pair[], cfg: Cfg): Pair[] {
+function applyFilters(pairs: LivePair[], cfg: Cfg): LivePair[] {
   return pairs.filter(p => {
     if (cfg.marketType !== "ALL" && p.type !== cfg.marketType) return false;
     const volMin = p.type === "SPOT" ? cfg.spotVolMin : cfg.futVolMin;
     if (p.vol24h < volMin) return false;
-    const abs = Math.abs(p.priceChange);
+    const abs = Math.abs(p.priceChangePct);
     if (abs < cfg.changeMin || abs > cfg.changeMax) return false;
-    if (p.atr < cfg.atrMin) return false;
-    if (p.oiChangePct < cfg.oiMin) return false;
-    if (!cfg.allowSideways && p.trend === "SIDEWAYS") return false;
+    const trend = getTrend(p.priceChangePct);
+    if (!cfg.allowSideways && trend === "SIDEWAYS") return false;
     if (cfg.fundingFilter && p.type === "FUTURES") {
       const fr = p.fundingRate ?? 0;
-      if (!(fr <= -0.01 && p.trend === "UPTREND") && !(fr >= 0.01 && p.trend === "DOWNTREND")) return false;
+      if (!(fr <= -0.01 && trend === "UPTREND") && !(fr >= 0.01 && trend === "DOWNTREND")) return false;
     }
-    if (cfg.volExpFilter && p.volRatio < cfg.volExpMultiplier) return false;
-    if (cfg.atrExpFilter && !p.atrExpansion) return false;
     return true;
   });
 }
 
-function getSignal(p: Pair, cfg: Cfg): string {
+function getSignal(p: LivePair, cfg: Cfg): string {
+  const trend = getTrend(p.priceChangePct);
   if (cfg.fundingFilter && p.type === "FUTURES" && p.fundingRate != null) {
-    if (p.fundingRate <= -0.01 && p.trend === "UPTREND")  return "SHORT_SQUEEZE";
-    if (p.fundingRate >= 0.01  && p.trend === "DOWNTREND") return "LONG_SQUEEZE";
+    if (p.fundingRate <= -0.01 && trend === "UPTREND")  return "SHORT_SQUEEZE";
+    if (p.fundingRate >= 0.01  && trend === "DOWNTREND") return "LONG_SQUEEZE";
   }
-  if (cfg.atrExpFilter && p.atrExpansion) return "BREAKOUT";
   return "NONE";
 }
 
-function buildChartUrl(r: Pair): string {
-  const base = r.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
-  const ex   = r.exchange.startsWith("Bybit") ? "BYBIT" : "BINANCE";
+function buildChartUrl(r: LivePair): string {
+  const base  = r.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
+  const ex    = r.exchange.startsWith("Bybit") ? "BYBIT" : "BINANCE";
   const quote = r.type === "FUTURES" ? "USDT" : "USD";
   return `https://gocharting.com/terminal?ticker=${ex}:${base}${quote}`;
 }
 
-function buildPrompt(r: Pair, signal: string): string {
+function buildPrompt(r: LivePair, signal: string): string {
   const base = r.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
-  const sl   = signal === "SHORT_SQUEEZE" ? "Short Squeeze" : signal === "LONG_SQUEEZE" ? "Long Squeeze" : signal === "BREAKOUT" ? "Volatility Breakout" : "Qualified Setup";
-  return `You are a professional crypto trading analyst. Analyze the following scanner data for ${base}/USDT and deliver a structured trading edge analysis. Be direct and practical.
+  const trend = getTrend(r.priceChangePct);
+  const sl = signal === "SHORT_SQUEEZE" ? "Short Squeeze" : signal === "LONG_SQUEEZE" ? "Long Squeeze" : "Qualified Setup";
+  return `You are a professional crypto trading analyst. Analyze the following LIVE scanner data for ${base}/USDT and deliver a structured trading edge analysis. Be direct and practical.
 
-PAIR DATA:
+LIVE MARKET DATA:
 - Symbol: ${base}/USDT (${r.type}) on ${r.exchange}
 - Signal: ${sl}
-- Trend: ${r.trend}
-- 24h Price Change: ${fmtChg(r.priceChange)}
-- ATR: ${r.atr.toFixed(2)}% ${r.atrExpansion ? "(EXPANDING ▲)" : "(STABLE)"}
+- Trend: ${trend}
+- 24h Price Change: ${fmtChg(r.priceChangePct)}
 - 24h Volume: ${fmtVol(r.vol24h)}
-- Volume vs 7-day Avg: ${r.volRatio.toFixed(2)}×
-- Open Interest Change: ${r.oiChangePct >= 0 ? "+" : ""}${r.oiChangePct.toFixed(1)}%
 ${r.fundingRate != null ? `- Funding Rate: ${fmtFund(r.fundingRate)}` : "- Funding Rate: N/A (spot)"}
+${r.openInterest != null ? `- Open Interest: ${fmtOI(r.openInterest)}` : ""}
 
 Respond with these exact section headers:
 **SIGNAL BREAKDOWN**
@@ -364,10 +352,14 @@ Under 380 words. Be sharp and specific.`;
 }
 
 const DEFAULT_CFG: Cfg = {
-  marketType: "ALL", spotVolMin: 50, futVolMin: 150,
-  changeMin: 5, changeMax: 20, atrMin: 2.5, oiMin: 2,
-  allowSideways: false, fundingFilter: true,
-  volExpFilter: true, volExpMultiplier: 1.5, atrExpFilter: true,
+  marketType: "ALL",
+  spotVolMin: 5,
+  futVolMin: 20,
+  changeMin: 3,
+  changeMax: 30,
+  oiMin: 0,
+  allowSideways: false,
+  fundingFilter: true,
 };
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -383,12 +375,11 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
 function SignalBadge({ signal }: { signal: string }) {
   if (signal === "SHORT_SQUEEZE") return <span className="signal signal-ss">⚡ Short Squeeze</span>;
   if (signal === "LONG_SQUEEZE")  return <span className="signal signal-ls">⚡ Long Squeeze</span>;
-  if (signal === "BREAKOUT")      return <span className="signal signal-bo">🔺 Breakout</span>;
-  return <span className="signal signal-none">No signal</span>;
+  return <span className="signal signal-none">—</span>;
 }
 
-function AiPanel({ pair, signal, isOpen }: { pair: Pair; signal: string; isOpen: boolean }) {
-  const [status, setStatus] = useState("idle");
+function AiPanel({ pair, signal, isOpen }: { pair: LivePair; signal: string; isOpen: boolean }) {
+  const [status, setStatus]   = useState("idle");
   const [content, setContent] = useState("");
   const base = pair.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
 
@@ -397,7 +388,7 @@ function AiPanel({ pair, signal, isOpen }: { pair: Pair; signal: string; isOpen:
     setStatus("loading");
     (async () => {
       try {
-        const res = await fetch("/api/analyze", {
+        const res  = await fetch("/api/analyze", {
           method: "POST", headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt: buildPrompt(pair, signal) }),
         });
@@ -455,7 +446,7 @@ function DykScreen({ statusText, exStates, totalFetched }: {
   return (
     <div className="dyk-screen">
       <div className="dyk-spinner-wrap"><div className="dyk-spinner" /></div>
-      <div className="dyk-status">Scanning all pairs…</div>
+      <div className="dyk-status">Fetching live market data…</div>
       <div className="dyk-substatus">
         {statusText}{totalFetched > 0 ? ` · ${totalFetched.toLocaleString()} pairs loaded` : ""}
       </div>
@@ -485,8 +476,8 @@ function DykScreen({ statusText, exStates, totalFetched }: {
 export default function CryptoScanner() {
   const [theme, setTheme]           = useState("dark");
   const [phase, setPhase]           = useState("idle");
-  const [allPairs, setAllPairs]     = useState<Pair[]>([]);
-  const [results, setResults]       = useState<Pair[]>([]);
+  const [allPairs, setAllPairs]     = useState<LivePair[]>([]);
+  const [results, setResults]       = useState<LivePair[]>([]);
   const [filter, setFilter]         = useState("ALL");
   const [scanCount, setScanCount]   = useState(0);
   const [lastScan, setLastScan]     = useState<string | null>(null);
@@ -511,14 +502,12 @@ export default function CryptoScanner() {
     setExStates(init);
 
     try {
-      // Mark all as active while the single parallel fetch runs
       EXCHANGES.forEach(e => setEx(e, "active"));
-      setStatusText("Fetching all pairs from exchanges…");
+      setStatusText("Fetching live data from exchanges…");
 
       const res  = await fetch("/api/pairs");
-      const data = await res.json() as { pairs: RawPair[]; errors: string[]; total: number };
+      const data = await res.json() as { pairs: LivePair[]; errors: string[]; total: number };
 
-      // Mark all done
       EXCHANGES.forEach(e => setEx(e, "done"));
       setTotalFetched(data.total);
 
@@ -528,15 +517,17 @@ export default function CryptoScanner() {
         return;
       }
 
-      setStatusText("Simulating market data & applying filters…");
-      const simulated = data.pairs.map(simulatePair);
-      const filtered  = applyFilters(simulated, cfg);
+      if (data.errors.length > 0) {
+        setScanError(`Some exchanges failed (${data.errors.length}): ${data.errors.join(" · ")} — showing results from remaining exchanges.`);
+      }
 
-      setAllPairs(simulated);
+      setStatusText("Applying filters…");
+      const filtered = applyFilters(data.pairs, cfg);
+      setAllPairs(data.pairs);
       setResults(filtered);
       setScanCount(c => c + 1);
       setLastScan(new Date().toTimeString().slice(0, 8));
-    } catch (err) {
+    } catch {
       setScanError("Scan failed — could not reach /api/pairs. Check your deployment.");
       EXCHANGES.forEach(e => setEx(e, "error"));
     }
@@ -545,8 +536,8 @@ export default function CryptoScanner() {
   };
 
   const displayed = filter === "ALL" ? results : results.filter(r => r.type === filter);
-  const upCount   = results.filter(r => r.trend === "UPTREND").length;
-  const downCount = results.filter(r => r.trend === "DOWNTREND").length;
+  const upCount   = results.filter(r => getTrend(r.priceChangePct) === "UPTREND").length;
+  const downCount = results.filter(r => getTrend(r.priceChangePct) === "DOWNTREND").length;
 
   return (
     <>
@@ -570,7 +561,7 @@ export default function CryptoScanner() {
           <div className="hero">
             <div className="hero-badge">✦ Real-time Market Scanner</div>
             <h1 className="hero-title">Find Your Next <span>Trading Edge</span></h1>
-            <p className="hero-sub">Scan all live USDT pairs across Binance & Bybit spot and futures. Filter by volatility, volume, funding rate, and more.</p>
+            <p className="hero-sub">Live data from Binance & Bybit. Filter all USDT pairs by real volume, price change, and funding rate to surface high-probability setups.</p>
           </div>
 
           <div className="stats-row">
@@ -599,7 +590,7 @@ export default function CryptoScanner() {
                 <div className="filter-icon">⚙️</div>
                 <div>
                   <div className="filter-title">Filter Settings</div>
-                  <div className="filter-subtitle">Customize what pairs get surfaced</div>
+                  <div className="filter-subtitle">All values based on live market data</div>
                 </div>
               </div>
               <div className={`filter-chevron${settingsOpen ? " open" : ""}`}>▼</div>
@@ -608,8 +599,10 @@ export default function CryptoScanner() {
               <>
                 <div className="filter-divider" />
                 <div className="filter-body">
+
+                  {/* Core */}
                   <div className="filter-group">
-                    <div className="filter-section-title">Core Filters</div>
+                    <div className="filter-section-title">Core Filters <span className="live-badge">● LIVE</span></div>
                     <div className="filter-item">
                       <div className="filter-item-label">Market Type</div>
                       <select className="f-input" value={cfg.marketType} onChange={e => upd("marketType", e.target.value)}>
@@ -619,15 +612,15 @@ export default function CryptoScanner() {
                       </select>
                     </div>
                     <div className="filter-item">
-                      <div className="filter-item-label">Min Volume — Spot</div>
-                      <div className="f-row"><input className="f-input" type="number" min="0" value={cfg.spotVolMin} onChange={e => upd("spotVolMin", +e.target.value)} /><span className="f-unit">$M / 24h</span></div>
+                      <div className="filter-item-label">Min 24h Volume — Spot</div>
+                      <div className="f-row"><input className="f-input" type="number" min="0" value={cfg.spotVolMin} onChange={e => upd("spotVolMin", +e.target.value)} /><span className="f-unit">$M</span></div>
                     </div>
                     <div className="filter-item">
-                      <div className="filter-item-label">Min Volume — Futures</div>
-                      <div className="f-row"><input className="f-input" type="number" min="0" value={cfg.futVolMin} onChange={e => upd("futVolMin", +e.target.value)} /><span className="f-unit">$M / 24h</span></div>
+                      <div className="filter-item-label">Min 24h Volume — Futures</div>
+                      <div className="f-row"><input className="f-input" type="number" min="0" value={cfg.futVolMin} onChange={e => upd("futVolMin", +e.target.value)} /><span className="f-unit">$M</span></div>
                     </div>
                     <div className="filter-item">
-                      <div className="filter-item-label">Price Change Range</div>
+                      <div className="filter-item-label">24h Price Change Range</div>
                       <div className="f-row">
                         <input className="f-input" type="number" min="0" value={cfg.changeMin} onChange={e => upd("changeMin", +e.target.value)} style={{ width: 70 }} />
                         <span className="f-unit">% to</span>
@@ -635,76 +628,46 @@ export default function CryptoScanner() {
                         <span className="f-unit">%</span>
                       </div>
                     </div>
-                    <div className="filter-item">
-                      <div className="filter-item-label">Min ATR (Volatility)</div>
-                      <div className="f-row"><input className="f-input" type="number" min="0" step="0.1" value={cfg.atrMin} onChange={e => upd("atrMin", +e.target.value)} /><span className="f-unit">%</span></div>
-                    </div>
-                    <div className="filter-item">
-                      <div className="filter-item-label">Min OI Change</div>
-                      <div className="f-row"><input className="f-input" type="number" value={cfg.oiMin} onChange={e => upd("oiMin", +e.target.value)} /><span className="f-unit">%</span></div>
-                    </div>
                     <div className="toggle-row">
                       <div className="toggle-info">
                         <div className="toggle-label">Include Sideways Pairs</div>
-                        <div className="toggle-desc">Show consolidating pairs too</div>
+                        <div className="toggle-desc">Show pairs with &lt;3% price change</div>
                       </div>
                       <Toggle checked={cfg.allowSideways} onChange={v => upd("allowSideways", v)} />
                     </div>
                   </div>
 
+                  {/* Funding */}
                   <div className="filter-group">
-                    <div className="filter-section-title">Funding Rate Filter</div>
+                    <div className="filter-section-title">Funding Rate Filter <span className="live-badge">● LIVE</span></div>
                     <div className="toggle-row">
                       <div className="toggle-info">
                         <div className="toggle-label">Squeeze Detection</div>
-                        <div className="toggle-desc">Find overcrowded trades about to reverse</div>
+                        <div className="toggle-desc">Find overcrowded futures positions about to reverse</div>
                       </div>
                       <Toggle checked={cfg.fundingFilter} onChange={v => upd("fundingFilter", v)} />
                     </div>
                     <div className="filter-item" style={{ marginTop: 8 }}>
-                      <div className="filter-item-label" style={{ color: "var(--green)" }}>⚡ Short Squeeze Setup</div>
-                      <div className="filter-item-hint">Funding ≤ −0.01% + price going up. Too many shorts in a rising market.</div>
+                      <div className="filter-item-label" style={{ color: "var(--green)" }}>⚡ Short Squeeze</div>
+                      <div className="filter-item-hint">Funding ≤ −0.01% + price rising. Too many shorts in a rising market — forced to buy back.</div>
                     </div>
                     <div className="filter-item">
-                      <div className="filter-item-label" style={{ color: "var(--red)" }}>⚡ Long Squeeze Setup</div>
-                      <div className="filter-item-hint">Funding ≥ +0.01% + price going down. Too many longs in a falling market.</div>
+                      <div className="filter-item-label" style={{ color: "var(--red)" }}>⚡ Long Squeeze</div>
+                      <div className="filter-item-hint">Funding ≥ +0.01% + price falling. Too many longs in a falling market — forced to sell.</div>
                     </div>
                   </div>
 
-                  <div className="filter-group">
-                    <div className="filter-section-title">Expansion Filters</div>
-                    <div className="toggle-row">
-                      <div className="toggle-info">
-                        <div className="toggle-label">Volume Expansion</div>
-                        <div className="toggle-desc">Pairs with unusually high volume</div>
-                      </div>
-                      <Toggle checked={cfg.volExpFilter} onChange={v => upd("volExpFilter", v)} />
-                    </div>
-                    {cfg.volExpFilter && (
-                      <div className="filter-item">
-                        <div className="filter-item-label">Volume Multiplier</div>
-                        <div className="f-row"><input className="f-input" type="number" min="1" step="0.1" value={cfg.volExpMultiplier} onChange={e => upd("volExpMultiplier", +e.target.value)} /><span className="f-unit">× 7-day avg</span></div>
-                      </div>
-                    )}
-                    <div className="toggle-row" style={{ marginTop: 8 }}>
-                      <div className="toggle-info">
-                        <div className="toggle-label">Volatility Expansion</div>
-                        <div className="toggle-desc">ATR growing — breakout conditions forming</div>
-                      </div>
-                      <Toggle checked={cfg.atrExpFilter} onChange={v => upd("atrExpFilter", v)} />
-                    </div>
-                  </div>
                 </div>
               </>
             )}
           </div>
 
+          {/* Active chips */}
           <div className="active-filters">
             <div className="filter-chip on"><div className="filter-chip-dot" />Vol ≥ ${cfg.spotVolMin}M</div>
             <div className="filter-chip on"><div className="filter-chip-dot" />Change {cfg.changeMin}–{cfg.changeMax}%</div>
-            <div className={`filter-chip${cfg.fundingFilter ? " on" : ""}`}><div className="filter-chip-dot" />Squeeze {cfg.fundingFilter ? "On" : "Off"}</div>
-            <div className={`filter-chip${cfg.volExpFilter ? " on" : ""}`}><div className="filter-chip-dot" />Vol Expansion {cfg.volExpFilter ? `${cfg.volExpMultiplier}×` : "Off"}</div>
-            <div className={`filter-chip${cfg.atrExpFilter ? " on" : ""}`}><div className="filter-chip-dot" />Breakout Filter {cfg.atrExpFilter ? "On" : "Off"}</div>
+            <div className={`filter-chip${cfg.fundingFilter ? " on" : ""}`}><div className="filter-chip-dot" />Squeeze Detection {cfg.fundingFilter ? "On" : "Off"}</div>
+            <div className={`filter-chip${!cfg.allowSideways ? " on" : ""}`}><div className="filter-chip-dot" />Trending Only {!cfg.allowSideways ? "On" : "Off"}</div>
           </div>
 
           <div className="scan-section">
@@ -721,7 +684,7 @@ export default function CryptoScanner() {
             <div className="idle-state">
               <div className="idle-icon">🔍</div>
               <div className="idle-title">Ready to Scan</div>
-              <div className="idle-sub">Configure your filters and hit Scan Market to scan all live USDT pairs across Binance & Bybit.</div>
+              <div className="idle-sub">Configure your filters and hit Scan Market. All data is fetched live from Binance & Bybit.</div>
             </div>
           )}
 
@@ -751,13 +714,14 @@ export default function CryptoScanner() {
                 <div className="empty-state">
                   <div className="empty-icon">📡</div>
                   <div className="empty-title">No pairs matched</div>
-                  <div className="empty-sub">Try relaxing the filters and scanning again.</div>
+                  <div className="empty-sub">Try relaxing the filters — lower the min volume, widen the price change range, or turn off Squeeze Detection.</div>
                 </div>
               ) : (
                 <>
+                  {/* Desktop table */}
                   <div className="table-card">
                     <div className="t-head">
-                      {["Pair","Type","24h Volume","24h Change","ATR","Funding","Vol","Trend / Signal","AI"].map(h => (
+                      {["Pair", "Type", "24h Volume", "24h Change", "Funding Rate", "Open Interest", "Trend", "Signal", "AI"].map(h => (
                         <div key={h} className="t-th">{h}</div>
                       ))}
                     </div>
@@ -767,7 +731,8 @@ export default function CryptoScanner() {
                       const chartUrl  = buildChartUrl(r);
                       const key       = r.symbol + r.exchange;
                       const panelOpen = !!openPanels[key];
-                      const isUp      = r.trend === "UPTREND";
+                      const trend     = getTrend(r.priceChangePct);
+                      const isUp      = trend === "UPTREND";
                       return (
                         <div key={key} className="row-wrap" style={{ animationDelay: `${i * 20}ms` }}>
                           <div className="t-row">
@@ -778,25 +743,20 @@ export default function CryptoScanner() {
                               </div>
                               <div><span className={`badge badge-${r.type.toLowerCase()}`}>{r.type === "SPOT" ? "Spot" : "Perp"}</span></div>
                               <div className="t-cell mono">{fmtVol(r.vol24h)}</div>
-                              <div className={`t-cell mono ${r.priceChange >= 0 ? "up" : "down"}`}>{fmtChg(r.priceChange)}</div>
-                              <div className="t-cell mono" style={{ color: "var(--orange)" }}>{r.atr.toFixed(2)}%{r.atrExpansion ? " ▲" : ""}</div>
+                              <div className={`t-cell mono ${r.priceChangePct >= 0 ? "up" : "down"}`}>{fmtChg(r.priceChangePct)}</div>
                               <div className="t-cell">
                                 {r.fundingRate != null
                                   ? <span className={`badge ${r.fundingRate <= -0.01 ? "badge-up" : r.fundingRate >= 0.01 ? "badge-down" : "badge-neutral"}`}>{fmtFund(r.fundingRate)}</span>
                                   : <span style={{ color: "var(--text-muted)", fontSize: 12 }}>—</span>}
                               </div>
-                              <div className="t-cell">
-                                <span className={`badge ${r.volRatio >= 2 ? "badge-up" : r.volRatio >= 1.5 ? "badge-orange" : "badge-neutral"}`}>
-                                  {r.volRatio.toFixed(1)}×{r.volRatio >= 2 ? " 🔥" : ""}
-                                </span>
-                              </div>
+                              <div className="t-cell mono">{fmtOI(r.openInterest)}</div>
                               <div>
                                 <div className="trend-wrap">
                                   <div className="trend-bar-bg"><div className={`trend-bar-fill fill-${isUp ? "up" : "down"}`} /></div>
                                   <span className={`trend-label ${isUp ? "up" : "down"}`}>{isUp ? "↑ Up" : "↓ Down"}</span>
                                 </div>
-                                <div style={{ marginTop: 4 }}><SignalBadge signal={signal} /></div>
                               </div>
+                              <div><SignalBadge signal={signal} /></div>
                             </a>
                             <button className={`ai-btn${panelOpen ? " active" : ""}`} onClick={() => togglePanel(key)}>🤖</button>
                           </div>
@@ -806,6 +766,7 @@ export default function CryptoScanner() {
                     })}
                   </div>
 
+                  {/* Mobile cards */}
                   <div className="cards-list">
                     {displayed.map((r, i) => {
                       const base      = r.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
@@ -813,7 +774,8 @@ export default function CryptoScanner() {
                       const chartUrl  = buildChartUrl(r);
                       const key       = r.symbol + r.exchange;
                       const panelOpen = !!openPanels[key];
-                      const isUp      = r.trend === "UPTREND";
+                      const trend     = getTrend(r.priceChangePct);
+                      const isUp      = trend === "UPTREND";
                       return (
                         <div key={key} className="m-card" style={{ animationDelay: `${i * 20}ms` }}>
                           <a className="m-card-link" href={chartUrl} target="_blank" rel="noopener noreferrer">
@@ -826,14 +788,13 @@ export default function CryptoScanner() {
                                   <SignalBadge signal={signal} />
                                 </div>
                               </div>
-                              <div className={`t-cell mono ${r.priceChange >= 0 ? "up" : "down"}`} style={{ fontSize: 16, fontWeight: 700 }}>{fmtChg(r.priceChange)}</div>
+                              <div className={`t-cell mono ${r.priceChangePct >= 0 ? "up" : "down"}`} style={{ fontSize: 16, fontWeight: 700 }}>{fmtChg(r.priceChangePct)}</div>
                             </div>
                             <div className="m-card-grid">
                               <div><div className="m-cell-label">24h Volume</div><div className="m-cell-value">{fmtVol(r.vol24h)}</div></div>
-                              <div><div className="m-cell-label">Vol Expansion</div><div className="m-cell-value">{r.volRatio.toFixed(1)}×{r.volRatio >= 2 ? " 🔥" : ""}</div></div>
-                              <div><div className="m-cell-label">ATR</div><div className="m-cell-value" style={{ color: "var(--orange)" }}>{r.atr.toFixed(2)}%{r.atrExpansion ? " ▲" : ""}</div></div>
                               <div><div className="m-cell-label">Trend</div><div className={`m-cell-value ${isUp ? "up" : "down"}`}>{isUp ? "↑ Uptrend" : "↓ Downtrend"}</div></div>
                               {r.fundingRate != null && <div><div className="m-cell-label">Funding Rate</div><div className="m-cell-value">{fmtFund(r.fundingRate)}</div></div>}
+                              {r.openInterest != null && <div><div className="m-cell-label">Open Interest</div><div className="m-cell-value">{fmtOI(r.openInterest)}</div></div>}
                             </div>
                             <div className="m-card-footer">
                               <a className="m-chart-link" href={chartUrl} target="_blank" rel="noopener noreferrer">↗ Open GoCharting</a>
@@ -858,7 +819,7 @@ export default function CryptoScanner() {
             </>
           )}
 
-          <div className="footer">CryptoScan Pro · Pair lists live from Binance & Bybit · Market data simulated · Not financial advice</div>
+          <div className="footer">CryptoScan Pro · Live data from Binance & Bybit · Not financial advice</div>
         </div>
       </div>
     </>
