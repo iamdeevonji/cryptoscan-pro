@@ -333,8 +333,8 @@ function getSignal(p: Pair, cfg: Cfg): string {
 function buildChartUrl(r: Pair): string {
   const base = r.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
   const ex   = r.exchange.startsWith("Bybit") ? "BYBIT" : "BINANCE";
-  const suf  = r.type === "FUTURES" ? "USDT.P" : "USDT";
-  return `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(`${ex}:${base}${suf}`)}`;
+  const quote = r.type === "FUTURES" ? "USDT" : "USD";
+  return `https://gocharting.com/terminal?ticker=${ex}:${base}${quote}`;
 }
 
 function buildPrompt(r: Pair, signal: string): string {
@@ -429,7 +429,7 @@ function AiPanel({ pair, signal, isOpen }: { pair: Pair; signal: string; isOpen:
               <div className="ai-panel-sub">{base}/USDT · {pair.type} · {pair.exchange}</div>
             </div>
           </div>
-          <a className="ai-chart-btn" href={buildChartUrl(pair)} target="_blank" rel="noopener noreferrer">↗ TradingView</a>
+          <a className="ai-chart-btn" href={buildChartUrl(pair)} target="_blank" rel="noopener noreferrer">↗ GoCharting</a>
         </div>
         {status === "loading" && <div className="ai-loading"><div className="ai-spinner" />Analyzing {base}/USDT…</div>}
         {(status === "done" || status === "error") && <div className="ai-content">{renderContent(content)}</div>}
@@ -836,7 +836,7 @@ export default function CryptoScanner() {
                               {r.fundingRate != null && <div><div className="m-cell-label">Funding Rate</div><div className="m-cell-value">{fmtFund(r.fundingRate)}</div></div>}
                             </div>
                             <div className="m-card-footer">
-                              <a className="m-chart-link" href={chartUrl} target="_blank" rel="noopener noreferrer">↗ Open TradingView</a>
+                              <a className="m-chart-link" href={chartUrl} target="_blank" rel="noopener noreferrer">↗ Open GoCharting</a>
                             </div>
                           </a>
                           <div style={{ padding: "0 16px 12px" }}>
