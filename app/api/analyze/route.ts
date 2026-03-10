@@ -15,8 +15,11 @@ export async function POST(req: Request) {
   const readable = new ReadableStream({
     async start(controller) {
       for await (const chunk of stream) {
-        if (chunk.type === "content_block_delta" && chunk.delta?.type === "text_delta") {
-          controller.enqueue(encoder.encode(chunk.delta.text));
+        if (
+          chunk.type === "content_block_delta" &&
+          chunk.delta?.type === "text_delta"
+        ) {
+          controller.enqueue(encoder.encode((chunk.delta as { type: string; text: string }).text));
         }
       }
       controller.close();
