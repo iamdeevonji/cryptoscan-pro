@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 
 const STYLE = `
@@ -614,7 +616,7 @@ export default function CryptoScanner() {
   const [cfg, setCfg]         = useState<Cfg>(DEFAULT_CFG);
   const [openPanels, setOpenPanels] = useState<Record<string,boolean>>({});
 
-  const upd = (k: string, v: any) => setCfg(p => ({ ...p, [k]: v }));
+  const upd = (k: string, v: unknown) => setCfg(p => ({ ...p, [k]: v }));
   const togglePanel = (sym: string) => setOpenPanels(prev => ({ ...prev, [sym]: !prev[sym] }));
 
   const handleScan = () => {
