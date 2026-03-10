@@ -503,26 +503,19 @@ function AiPanel({ pair, signal, chartUrl, chartSource, isOpen }) {
   (async () => {
     const prompt = buildPrompt(pair, signal);
     try {
-      const res = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
-      });
+  const res = await fetch("/api/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt }),
+  });
 
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const text = decoder.decode(value, { stream: true });
-        setContent(prev => prev + text);
-      }
-      setStatus("done");
-    } catch {
-      setContent("Unable to load analysis. Please try again.");
-      setStatus("error");
-    }
+  const data = await res.json();
+  setContent(data.text || "No analysis returned.");
+  setStatus("done");
+} catch {
+  setContent("Unable to load analysis. Please try again.");
+  setStatus("error");
+}
   })();
 }, [isOpen]);
 
