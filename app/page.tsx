@@ -145,11 +145,11 @@ const STYLE = `
 
   /* table — removed ATR + Vol columns, now 8 cols */
   .table-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .t-head { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
+  .t-head { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px 44px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
   .t-th { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; }
   .row-wrap { border-bottom:1px solid var(--border); }
   .row-wrap:last-child { border-bottom:none; }
-  .t-row { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
+  .t-row { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px 44px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
   .t-row:hover { background:var(--surface2); }
   @keyframes rowIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
   .pair-name { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--text); }
@@ -218,6 +218,50 @@ const STYLE = `
   .m-ai-panel { overflow:hidden; max-height:0; transition:max-height .35s ease; }
   .m-ai-panel.open { max-height:700px; }
   .m-ai-inner { padding:16px; border-top:1px solid var(--border); background:var(--surface2); }
+
+  /* ── Sentiment Panel ── */
+  .sent-panel { overflow:hidden; max-height:0; transition:max-height .4s ease; background:var(--surface2); border-top:1px solid var(--border); }
+  .sent-panel.open { max-height:900px; }
+  .sent-inner { padding:20px; }
+  .sent-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:8px; }
+  .sent-title-wrap { display:flex; align-items:center; gap:8px; }
+  .sent-icon { width:30px; height:30px; border-radius:var(--radius-sm); background:linear-gradient(135deg,#f97316,#facc15); display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .sent-title { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--text); }
+  .sent-sub   { font-size:12px; color:var(--text-muted); }
+  .sent-sources { display:flex; gap:6px; flex-wrap:wrap; }
+  .sent-source-pill { font-size:10px; font-weight:600; padding:3px 8px; border-radius:10px; background:var(--surface); border:1px solid var(--border2); color:var(--text-muted); }
+  .sent-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; }
+  @media(max-width:600px){ .sent-grid { grid-template-columns:1fr; } }
+  .sent-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px; }
+  .sent-card-label { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+  .fg-meter-wrap { position:relative; height:8px; background:linear-gradient(to right,#ef4444,#f97316,#facc15,#86efac,#22c55e); border-radius:4px; margin-bottom:8px; }
+  .fg-needle { position:absolute; top:-3px; width:14px; height:14px; border-radius:50%; background:white; border:2px solid var(--text); transform:translateX(-50%); transition:left .4s ease; box-shadow:0 1px 4px rgba(0,0,0,.3); }
+  .fg-value { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; }
+  .fg-label { font-size:12px; font-weight:600; margin-top:2px; }
+  .fg-history { display:flex; gap:12px; margin-top:10px; }
+  .fg-hist-item { display:flex; flex-direction:column; gap:2px; }
+  .fg-hist-label { font-size:10px; color:var(--text-muted); }
+  .fg-hist-val   { font-size:12px; font-weight:600; }
+  .ls-bar-wrap { margin-bottom:10px; }
+  .ls-bar-track { height:10px; border-radius:5px; background:var(--border2); overflow:hidden; display:flex; }
+  .ls-bar-long  { background:var(--green); border-radius:5px 0 0 5px; transition:width .4s ease; }
+  .ls-bar-short { background:var(--red);   border-radius:0 5px 5px 0; transition:width .4s ease; }
+  .ls-labels { display:flex; justify-content:space-between; margin-top:6px; }
+  .ls-label-long  { font-size:12px; font-weight:700; color:var(--green); }
+  .ls-label-short { font-size:12px; font-weight:700; color:var(--down); }
+  .ls-ratio { font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:700; color:var(--text); margin-bottom:4px; }
+  .ls-ratio-sub { font-size:11px; color:var(--text-muted); }
+  .sent-note { font-size:11px; color:var(--text-muted); background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); padding:10px 12px; display:flex; align-items:flex-start; gap:8px; }
+  .sent-loading { display:flex; align-items:center; gap:10px; color:var(--text-muted); font-size:13px; padding:8px 0; }
+  .sent-spinner { width:18px; height:18px; border:2px solid var(--border2); border-top-color:#f97316; border-radius:50%; animation:spin .7s linear infinite; flex-shrink:0; }
+  .sent-btn { width:32px; height:32px; border-radius:var(--radius-sm); background:var(--surface2); border:1px solid var(--border2); cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:all .2s; flex-shrink:0; }
+  .sent-btn:hover { background:rgba(249,115,22,.15); border-color:#f97316; }
+  .sent-btn.active { background:rgba(249,115,22,.15); border-color:#f97316; }
+  .m-sent-btn { display:flex; align-items:center; gap:6px; background:var(--surface2); border:1px solid var(--border2); border-radius:var(--radius-sm); padding:7px 14px; font-size:12px; font-weight:600; color:var(--text-dim); cursor:pointer; transition:all .2s; }
+  .m-sent-btn:hover,.m-sent-btn.active { background:rgba(249,115,22,.15); border-color:#f97316; color:#f97316; }
+  .m-sent-panel { overflow:hidden; max-height:0; transition:max-height .4s ease; }
+  .m-sent-panel.open { max-height:900px; }
+  .m-sent-inner { padding:16px; border-top:1px solid var(--border); background:var(--surface2); }
 
   @media(max-width:900px){
     .table-card { display:none; }
@@ -349,6 +393,198 @@ Respond with these exact section headers:
 **SUGGESTED APPROACH**
 
 Under 380 words. Be sharp and specific.`;
+}
+
+// ── Sentiment Types & Panel ───────────────────────────────────────────────────
+interface SentimentData {
+  fearGreedValue: number;
+  fearGreedLabel: string;
+  fearGreedYesterday: number;
+  fearGreedLastWeek: number;
+  longShortRatio: number | null;
+  longPct: number | null;
+  shortPct: number | null;
+  topTraderLongPct: number | null;
+  topTraderShortPct: number | null;
+  isFuturesBinance: boolean;
+  error: string | null;
+}
+
+function fgColor(v: number): string {
+  if (v <= 25) return "#ef4444";
+  if (v <= 45) return "#f97316";
+  if (v <= 55) return "#facc15";
+  if (v <= 75) return "#86efac";
+  return "#22c55e";
+}
+
+function SentimentPanel({ pair, isOpen }: { pair: LivePair; isOpen: boolean }) {
+  const [status, setStatus]   = useState<"idle"|"loading"|"done"|"error">("idle");
+  const [data, setData]       = useState<SentimentData | null>(null);
+  const base = pair.symbol.replace(/USDT$/, "").replace(/-PERP$/, "").replace(/PERP$/, "");
+
+  useEffect(() => {
+    if (!isOpen || status !== "idle") return;
+    setStatus("loading");
+    (async () => {
+      try {
+        const params = new URLSearchParams({
+          symbol:   pair.symbol,
+          exchange: pair.exchange,
+          type:     pair.type,
+        });
+        const res  = await fetch(`/api/sentiment?${params}`);
+        const json = await res.json() as SentimentData;
+        setData(json);
+        setStatus("done");
+      } catch {
+        setStatus("error");
+      }
+    })();
+  }, [isOpen]);
+
+  const renderFGLabel = (label: string, value: number) => (
+    <span style={{ color: fgColor(value), fontWeight: 700 }}>{label}</span>
+  );
+
+  return (
+    <div className={`sent-panel${isOpen ? " open" : ""}`}>
+      <div className="sent-inner">
+        <div className="sent-header">
+          <div className="sent-title-wrap">
+            <div className="sent-icon">📊</div>
+            <div>
+              <div className="sent-title">Sentiment Analysis</div>
+              <div className="sent-sub">{base}/USDT · {pair.type} · {pair.exchange}</div>
+            </div>
+          </div>
+          <div className="sent-sources">
+            <span className="sent-source-pill">Alternative.me</span>
+            {pair.type === "FUTURES" && pair.exchange === "Binance Futures" && (
+              <span className="sent-source-pill">Binance L/S</span>
+            )}
+          </div>
+        </div>
+
+        {status === "loading" && (
+          <div className="sent-loading">
+            <div className="sent-spinner" />
+            Fetching sentiment data…
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="sent-note">⚠️ Could not load sentiment data. Check your connection.</div>
+        )}
+
+        {status === "done" && data && (
+          <>
+            <div className="sent-grid">
+              {/* Fear & Greed Card */}
+              <div className="sent-card">
+                <div className="sent-card-label">Market Fear & Greed Index</div>
+                <div className="fg-meter-wrap">
+                  <div className="fg-needle" style={{ left: `${data.fearGreedValue}%` }} />
+                </div>
+                <div style={{ marginTop: 12 }}>
+                  <div className="fg-value" style={{ color: fgColor(data.fearGreedValue) }}>
+                    {data.fearGreedValue}
+                  </div>
+                  <div className="fg-label" style={{ color: fgColor(data.fearGreedValue) }}>
+                    {data.fearGreedLabel}
+                  </div>
+                </div>
+                <div className="fg-history">
+                  <div className="fg-hist-item">
+                    <span className="fg-hist-label">Yesterday</span>
+                    <span className="fg-hist-val" style={{ color: fgColor(data.fearGreedYesterday) }}>
+                      {data.fearGreedYesterday}
+                    </span>
+                  </div>
+                  <div className="fg-hist-item">
+                    <span className="fg-hist-label">Last Week</span>
+                    <span className="fg-hist-val" style={{ color: fgColor(data.fearGreedLastWeek) }}>
+                      {data.fearGreedLastWeek}
+                    </span>
+                  </div>
+                  <div className="fg-hist-item">
+                    <span className="fg-hist-label">Trend</span>
+                    <span className="fg-hist-val">
+                      {data.fearGreedValue > data.fearGreedYesterday ? "↑ Rising" :
+                       data.fearGreedValue < data.fearGreedYesterday ? "↓ Falling" : "→ Flat"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Long/Short Card */}
+              <div className="sent-card">
+                <div className="sent-card-label">Long / Short Ratio</div>
+                {data.isFuturesBinance && data.longPct != null ? (
+                  <>
+                    <div className="ls-ratio">{data.longShortRatio?.toFixed(2)}</div>
+                    <div className="ls-ratio-sub">Long/Short Ratio (all traders)</div>
+                    <div className="ls-bar-wrap" style={{ marginTop: 12 }}>
+                      <div className="ls-bar-track">
+                        <div className="ls-bar-long"  style={{ width: `${data.longPct}%` }} />
+                        <div className="ls-bar-short" style={{ width: `${data.shortPct ?? 0}%` }} />
+                      </div>
+                      <div className="ls-labels">
+                        <span className="ls-label-long">↑ {data.longPct?.toFixed(1)}% Long</span>
+                        <span className="ls-label-short">{data.shortPct?.toFixed(1)}% Short ↓</span>
+                      </div>
+                    </div>
+                    {data.topTraderLongPct != null && (
+                      <div style={{ marginTop: 10 }}>
+                        <div className="ls-bar-wrap">
+                          <div style={{ fontSize: 10, color: "var(--text-muted)", marginBottom: 4 }}>TOP TRADERS</div>
+                          <div className="ls-bar-track">
+                            <div className="ls-bar-long"  style={{ width: `${data.topTraderLongPct}%` }} />
+                            <div className="ls-bar-short" style={{ width: `${data.topTraderShortPct ?? 0}%` }} />
+                          </div>
+                          <div className="ls-labels">
+                            <span className="ls-label-long">↑ {data.topTraderLongPct?.toFixed(1)}%</span>
+                            <span className="ls-label-short">{data.topTraderShortPct?.toFixed(1)}% ↓</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div style={{ paddingTop: 8 }}>
+                    <div className="sent-note">
+                      ℹ️ Long/Short ratio data is only available for <strong>Binance Futures</strong> pairs.
+                      {pair.type === "SPOT"
+                        ? " This is a spot pair — no derivatives positioning data exists."
+                        : " Switch to Binance Futures for L/S data on this token."}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Interpretation */}
+            <div className="sent-note">
+              <span>💡</span>
+              <span>
+                Market is showing <strong>{renderFGLabel(data.fearGreedLabel, data.fearGreedValue)}</strong> ({data.fearGreedValue}/100).
+                {data.fearGreedValue <= 25 && " Extreme fear often marks bottoms — potential contrarian buy zone."}
+                {data.fearGreedValue > 25 && data.fearGreedValue <= 45 && " Fear in the market may present buying opportunities in strong setups."}
+                {data.fearGreedValue > 45 && data.fearGreedValue <= 55 && " Neutral market — follow individual pair signals closely."}
+                {data.fearGreedValue > 55 && data.fearGreedValue <= 75 && " Greed present — manage risk carefully, avoid chasing moves."}
+                {data.fearGreedValue > 75 && " Extreme greed — historically precedes corrections. Tighten stops."}
+                {data.isFuturesBinance && data.longPct != null && data.longPct > 65 && " Heavy long bias detected — crowded longs increase liquidation risk to the downside."}
+                {data.isFuturesBinance && data.shortPct != null && data.shortPct > 60 && " Heavy short bias detected — potential fuel for a short squeeze if price rises."}
+              </span>
+            </div>
+            <div style={{ marginTop: 8, fontSize: 11, color: "var(--text-muted)" }}>
+              Sources: Alternative.me Fear & Greed Index · Binance Futures API · Updates every hour
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
 
 const DEFAULT_CFG: Cfg = {
@@ -483,20 +719,22 @@ export default function CryptoScanner() {
   const [lastScan, setLastScan]     = useState<string | null>(null);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [cfg, setCfg]               = useState<Cfg>(DEFAULT_CFG);
-  const [openPanels, setOpenPanels] = useState<Record<string, boolean>>({});
+  const [openPanels, setOpenPanels]         = useState<Record<string, boolean>>({});
+  const [openSentiment, setOpenSentiment]   = useState<Record<string, boolean>>({});
   const [statusText, setStatusText] = useState("");
   const [exStates, setExStates]     = useState<Record<string, ExState>>({});
   const [totalFetched, setTotalFetched] = useState(0);
   const [scanError, setScanError]   = useState<string | null>(null);
 
   const upd = (k: string, v: unknown) => setCfg(p => ({ ...p, [k]: v }));
-  const togglePanel = (key: string) => setOpenPanels(p => ({ ...p, [key]: !p[key] }));
+  const togglePanel     = (key: string) => setOpenPanels(p => ({ ...p, [key]: !p[key] }));
+  const toggleSentiment = (key: string) => setOpenSentiment(p => ({ ...p, [key]: !p[key] }));
   const setEx = (ex: string, s: ExState) => setExStates(p => ({ ...p, [ex]: s }));
 
   const handleScan = async () => {
     if (phase === "scanning") return;
     setPhase("scanning");
-    setResults([]); setAllPairs([]); setOpenPanels({}); setTotalFetched(0); setScanError(null);
+    setResults([]); setAllPairs([]); setOpenPanels({}); setOpenSentiment({}); setTotalFetched(0); setScanError(null);
     const init: Record<string, ExState> = {};
     EXCHANGES.forEach(e => { init[e] = "pending"; });
     setExStates(init);
@@ -721,7 +959,7 @@ export default function CryptoScanner() {
                   {/* Desktop table */}
                   <div className="table-card">
                     <div className="t-head">
-                      {["Pair", "Type", "24h Volume", "24h Change", "Funding Rate", "Open Interest", "Trend", "Signal", "AI"].map(h => (
+                      {["Pair", "Type", "24h Volume", "24h Change", "Funding Rate", "Open Interest", "Trend", "Signal", "AI", "📊"].map(h => (
                         <div key={h} className="t-th">{h}</div>
                       ))}
                     </div>
@@ -731,6 +969,7 @@ export default function CryptoScanner() {
                       const chartUrl  = buildChartUrl(r);
                       const key       = r.symbol + r.exchange;
                       const panelOpen = !!openPanels[key];
+                      const sentOpen  = !!openSentiment[key];
                       const trend     = getTrend(r.priceChangePct);
                       const isUp      = trend === "UPTREND";
                       return (
@@ -759,8 +998,10 @@ export default function CryptoScanner() {
                               <div><SignalBadge signal={signal} /></div>
                             </a>
                             <button className={`ai-btn${panelOpen ? " active" : ""}`} onClick={() => togglePanel(key)}>🤖</button>
+                            <button className={`sent-btn${sentOpen ? " active" : ""}`} onClick={() => toggleSentiment(key)} title="Sentiment Analysis">📊</button>
                           </div>
                           <AiPanel pair={r} signal={signal} isOpen={panelOpen} />
+                          <SentimentPanel pair={r} isOpen={sentOpen} />
                         </div>
                       );
                     })}
@@ -774,6 +1015,7 @@ export default function CryptoScanner() {
                       const chartUrl  = buildChartUrl(r);
                       const key       = r.symbol + r.exchange;
                       const panelOpen = !!openPanels[key];
+                      const sentOpen  = !!openSentiment[key];
                       const trend     = getTrend(r.priceChangePct);
                       const isUp      = trend === "UPTREND";
                       return (
@@ -800,14 +1042,22 @@ export default function CryptoScanner() {
                               <a className="m-chart-link" href={chartUrl} target="_blank" rel="noopener noreferrer">↗ Open GoCharting</a>
                             </div>
                           </a>
-                          <div style={{ padding: "0 16px 12px" }}>
+                          <div style={{ padding: "0 16px 12px", display: "flex", gap: 8, flexWrap: "wrap" }}>
                             <button className={`m-ai-btn${panelOpen ? " active" : ""}`} onClick={() => togglePanel(key)}>
                               🤖 {panelOpen ? "Hide Analysis" : "Get AI Analysis"}
+                            </button>
+                            <button className={`m-sent-btn${sentOpen ? " active" : ""}`} onClick={() => toggleSentiment(key)}>
+                              📊 {sentOpen ? "Hide Sentiment" : "Sentiment"}
                             </button>
                           </div>
                           <div className={`m-ai-panel${panelOpen ? " open" : ""}`}>
                             <div className="m-ai-inner">
                               <AiPanel pair={r} signal={signal} isOpen={panelOpen} />
+                            </div>
+                          </div>
+                          <div className={`m-sent-panel${sentOpen ? " open" : ""}`}>
+                            <div className="m-sent-inner">
+                              <SentimentPanel pair={r} isOpen={sentOpen} />
                             </div>
                           </div>
                         </div>
