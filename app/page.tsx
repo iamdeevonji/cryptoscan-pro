@@ -145,11 +145,11 @@ const STYLE = `
 
   /* table — removed ATR + Vol columns, now 8 cols */
   .table-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-  .t-head { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px 44px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
+  .t-head { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 96px; padding:12px 20px; gap:8px; border-bottom:1px solid var(--border); }
   .t-th { font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; }
   .row-wrap { border-bottom:1px solid var(--border); }
   .row-wrap:last-child { border-bottom:none; }
-  .t-row { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 44px 44px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
+  .t-row { display:grid; grid-template-columns:1fr 80px 110px 100px 110px 110px 120px 96px; padding:14px 20px; gap:8px; align-items:center; transition:background .15s; animation:rowIn .3s ease both; }
   .t-row:hover { background:var(--surface2); }
   @keyframes rowIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
   .pair-name { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; color:var(--text); }
@@ -959,7 +959,7 @@ export default function CryptoScanner() {
                   {/* Desktop table */}
                   <div className="table-card">
                     <div className="t-head">
-                      {["Pair", "Type", "24h Volume", "24h Change", "Funding Rate", "Open Interest", "Trend", "Signal", "AI", "📊"].map(h => (
+                      {["Pair", "Type", "24h Volume", "24h Change", "Funding Rate", "Open Interest", "Trend", "Signal", "Actions"].map(h => (
                         <div key={h} className="t-th">{h}</div>
                       ))}
                     </div>
@@ -997,9 +997,10 @@ export default function CryptoScanner() {
                               </div>
                               <div><SignalBadge signal={signal} /></div>
                             </a>
-                            <button className={`ai-btn${panelOpen ? " active" : ""}`} onClick={() => togglePanel(key)}>🤖</button>
-                            <button className={`sent-btn${sentOpen ? " active" : ""}`} onClick={() => toggleSentiment(key)} title="Sentiment Analysis">📊</button>
-                          </div>
+                            <div style={{ display:"flex", gap:6 }}>
+                              <button className={`ai-btn${panelOpen ? " active" : ""}`} onClick={() => togglePanel(key)}>🤖</button>
+                              <button className={`sent-btn${sentOpen ? " active" : ""}`} onClick={() => toggleSentiment(key)} title="Sentiment Analysis">📊</button>
+                            </div>                          </div>
                           <AiPanel pair={r} signal={signal} isOpen={panelOpen} />
                           <SentimentPanel pair={r} isOpen={sentOpen} />
                         </div>
